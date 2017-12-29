@@ -1,5 +1,6 @@
 ﻿namespace ReviewYourFavourites.Web
 {
+    using AutoMapper;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -8,6 +9,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using ReviewYourFavourites.Data;
     using ReviewYourFavourites.Data.Models;
+    using ReviewYourFavourites.Web.Infrastructure.Extensions;
 
     public class Startup
     {
@@ -27,11 +29,15 @@
                 .AddEntityFrameworkStores<ReviewYourFavouritesDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddAutoMapper();
+
             services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseDatabaseMigration();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
