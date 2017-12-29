@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using ReviewYourFavourites.Web.Models;
-
-namespace ReviewYourFavourites.Web.Controllers
+﻿namespace ReviewYourFavourites.Web.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using ReviewYourFavourites.Web.Models;
+
     public class HomeController : Controller
     {
         public IActionResult Index()
