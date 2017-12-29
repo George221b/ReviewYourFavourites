@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace ReviewYourFavourites.Web.Data.Migrations
+﻿namespace ReviewYourFavourites.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    using System;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Infrastructure;
+    using Microsoft.EntityFrameworkCore.Metadata;
+    using Microsoft.EntityFrameworkCore.Migrations;
+
+    [DbContext(typeof(ReviewYourFavouritesDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {
@@ -126,7 +123,7 @@ namespace ReviewYourFavourites.Web.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("ReviewYourFavourites.Web.Models.ApplicationUser", b =>
+            modelBuilder.Entity("ReviewYourFavourites.Data.Models.User", b =>
                 {
                     b.Property<string>("Id");
 
@@ -185,7 +182,7 @@ namespace ReviewYourFavourites.Web.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("ReviewYourFavourites.Web.Models.ApplicationUser")
+                    b.HasOne("ReviewYourFavourites.Data.Models.User")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -193,7 +190,7 @@ namespace ReviewYourFavourites.Web.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("ReviewYourFavourites.Web.Models.ApplicationUser")
+                    b.HasOne("ReviewYourFavourites.Data.Models.User")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -206,7 +203,7 @@ namespace ReviewYourFavourites.Web.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("ReviewYourFavourites.Web.Models.ApplicationUser")
+                    b.HasOne("ReviewYourFavourites.Data.Models.User")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
