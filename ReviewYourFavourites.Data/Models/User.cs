@@ -12,11 +12,10 @@
         [MaxLength(DataConstants.UserNameMaxLength)]
         public string Name { get; set; }
 
-        public DateTime Birthdate { get; set; }
-
-        // TODO
-        //[Required]
-        //public byte[] ProfilePhoto { get; set; }
+        public DateTime Birthday { get; set; }
+        //// TODO
+        ////[Required]
+        ////public byte[] ProfilePhoto { get; set; }
 
         public Gender Gender { get; set; }
     }

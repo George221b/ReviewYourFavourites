@@ -6,9 +6,9 @@
     using Microsoft.Extensions.DependencyInjection;
     using ReviewYourFavourites.Data;
     using ReviewYourFavourites.Data.Models;
+    using ReviewYourFavourites.Data.Models.Enums;
     using System;
     using System.Threading.Tasks;
-    using ReviewYourFavourites.Data.Models.Enums;
 
     public static class ApplicationBuilderExtensions
     {
@@ -55,11 +55,10 @@
                                 Email = adminEmail,
                                 UserName = adminName,
                                 Name = adminName,
-                                Birthdate = DateTime.UtcNow,
-                                Gender = Gender.Female
+                                Birthday = DateTime.UtcNow
                             };
 
-                            await userManager.CreateAsync(adminUser, "admin12");
+                            await userManager.CreateAsync(adminUser, "Admin2017");
 
                             await userManager.AddToRoleAsync(adminUser, adminName);
                         }
