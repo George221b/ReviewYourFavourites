@@ -6,7 +6,7 @@
     using System.ComponentModel.DataAnnotations;
 
     public class User : IdentityUser
-    {
+    {        
         [Required]
         [MinLength(DataConstants.UserNameMinLength)]
         [MaxLength(DataConstants.UserNameMaxLength)]
