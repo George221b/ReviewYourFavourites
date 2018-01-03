@@ -1,6 +1,5 @@
 ﻿namespace ReviewYourFavourites.Data.Models
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
 
     public abstract class Review
@@ -17,10 +16,15 @@
         [MaxLength(DataConstants.ReviewTitleMaxLength)]
         public string Content { get; set; }
 
-        public DateTime PublishDate { get; set; }
-
         [Range(DataConstants.ReviewRatingMinRange,
             DataConstants.ReviewRatingMaxRange)]
         public int Rating { get; set; }
+
+        [Range(DataConstants.ReviewViewsMinRange,
+            DataConstants.ReviewViewsMaxRange)]
+        public int Views { get; set; }
+
+        [MaxLength(DataConstants.ReviewPosterFileLength)]
+        public byte[] Poster { get; set; }
     }
 }

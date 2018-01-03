@@ -16,5 +16,16 @@
 
         public const int ReviewRatingMinRange = 1;
         public const int ReviewRatingMaxRange = 10;
+
+        public const int ComicWriterMinLength = 2;
+        public const int ComicWriterMaxLength = 100;
+
+        public const double ComicPriceMinRange = 0.0;
+        public const double ComicPriceMaxRange = 10000000.00;
+
+        public const int ReviewViewsMinRange = 0;
+        public const int ReviewViewsMaxRange = int.MaxValue;
+
+        public const int ReviewPosterFileLength = 2 * 1024 * 1024;
     }
 }
