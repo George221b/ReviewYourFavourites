@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ReviewYourFavourites.Common\ReviewYourFavourites.Common.csproj" />
+    <ProjectReference Include="..\ReviewYourFavourites.Data\ReviewYourFavourites.Data.csproj" />
+  </ItemGroup>
+
+</Project>

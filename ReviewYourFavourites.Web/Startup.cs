@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -37,10 +38,19 @@
 
             services.AddAutoMapper();
 
-            services.AddMvc();
+            services.AddDomainServices();
+
+            services.AddRouting(routing => routing.LowercaseUrls = true);
+
+            services.AddMvc(options =>
+            {
+                options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+            });
+
+            services.AddTransient<Seeder>();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Seeder seeder)
         {
             //app.UseDatabaseMigration();
 
@@ -65,6 +75,8 @@
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //seeder.Seed().Wait();
         }
     }
 }

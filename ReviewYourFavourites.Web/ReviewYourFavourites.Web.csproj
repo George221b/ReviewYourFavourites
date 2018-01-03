@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ReviewYourFavourites.Common\ReviewYourFavourites.Common.csproj" />
     <ProjectReference Include="..\ReviewYourFavourites.Data\ReviewYourFavourites.Data.csproj" />
+    <ProjectReference Include="..\ReviewYourFavourites.Services\ReviewYourFavourites.Services.csproj" />
   </ItemGroup>
 
 </Project>

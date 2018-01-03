@@ -25,8 +25,8 @@
 
         public List<Movie> Movies { get; set; } = new List<Movie>();
 
-        public List<UserComicLikes> ComicLiked = new List<UserComicLikes>();
+        //public List<UserComicLikes> ComicLiked = new List<UserComicLikes>();
 
-        public List<UserMovieLikes> MovieLiked = new List<UserMovieLikes>();
+        //public List<UserMovieLikes> MovieLiked = new List<UserMovieLikes>();
     }
 }

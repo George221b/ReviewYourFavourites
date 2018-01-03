@@ -14,6 +14,6 @@
 
         public User Author { get; set; }
 
-        public List<UserMovieLikes> UserMovieLikes = new List<UserMovieLikes>();
+        //public List<UserMovieLikes> UserMovieLikes = new List<UserMovieLikes>();
     }
 }

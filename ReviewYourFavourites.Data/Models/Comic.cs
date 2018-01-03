@@ -21,6 +21,6 @@
 
         public User Author { get; set; }
 
-        public List<UserComicLikes> UserComicLikes = new List<UserComicLikes>();
+        //public List<UserComicLikes> UserComicLikes = new List<UserComicLikes>();
     }
 }
