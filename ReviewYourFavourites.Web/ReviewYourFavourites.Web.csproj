@@ -29,7 +29,6 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\" />
-    <Folder Include="Areas\Review\Controllers\" />
     <Folder Include="Areas\Review\Data\" />
     <Folder Include="Areas\Review\Models\" />
     <Folder Include="Areas\Review\Views\" />
