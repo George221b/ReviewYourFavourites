@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ReviewYourFavourites.Data.Models.Enums;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ReviewYourFavourites.Web.Models.AccountViewModels
 {
@@ -23,5 +21,18 @@ namespace ReviewYourFavourites.Web.Models.AccountViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string UserName { get; set; }
+
+        [Required]
+        [Display(Name = "Your Name:")]
+        public string Name { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
+        [DataType(DataType.DateTime)]
+        public DateTime Birthday { get; set; }
+
+        public Gender Gender { get; set; }
     }
 }

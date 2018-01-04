@@ -26,6 +26,29 @@
                 <input asp-for="ConfirmPassword" class="form-control" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="UserName"></label>
+                <p class="disclaimer">*Please note: Be sure to remember your username, because you will use it for logging in our site, and it will be visible to others as well.*</p>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Birthday"></label>
+                <input asp-for="Birthday" class="form-control" asp-format="{0:dd.MM.yyyy}" />
+                <span asp-validation-for="Birthday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <select asp-for="Gender" class="form-control">
+                    <option value="0">Male</option>
+                    <option value="1">Female</option>
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-default">Register</button>
         </form>
     </div>
