@@ -1,0 +1,22 @@
+﻿@model ComicCreateViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+
+            @Html.Partial("_CreateReviewPartial", Model.BaseModel)
+
+            <button type="submit" class="btn btn-default">Publish review!</button>
+        </form>
+    </div>
+</div>
+
+<script>
+			CKEDITOR.replace( 'editor1' );
+</script>
+
