@@ -11,7 +11,7 @@
 
 <div class="form-group">
     <label asp-for="@Model.Content"></label>
-    <textarea name="editor1" asp-for="@Model.Content"></textarea>
+    <textarea asp-for="@Model.Content"></textarea>
     <span asp-validation-for="@Model.Content" class="text-danger"></span>
 </div>
 
@@ -21,8 +21,8 @@
     <span asp-validation-for="@Model.Rating" class="text-danger"></span>
 </div>
 <div class="form-group">
-    <label asp-for="@Model.Poster"></label>
-    <p class="disclaimer">*Please note, that if you decide to upload a poster, it must be no bigger than 2MBs.*</p>
-    <input asp-for="@Model.Poster" class="form-control" />
-    <span asp-validation-for="@Model.Poster" class="text-danger"></span>
+    <label for="name">Poster upload:</label>
+    <p class="disclaimer">*Please note, that if you decide to upload a poster, it must be no bigger than 2MBs. and be of type .jpg!*</p>
+    <input type="file" name="poster" style="display: none" accept=".jpg" />
+    <button type="button" class="btn btn-default" onclick="document.getElementsByName('poster')[0].click()">Choose your file!</button>
 </div>

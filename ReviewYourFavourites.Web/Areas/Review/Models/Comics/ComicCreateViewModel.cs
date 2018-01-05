@@ -4,10 +4,8 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class ComicCreateViewModel
+    public class ComicCreateViewModel : ReviewCreateViewModel
     {
-        public ReviewCreateViewModel BaseModel { get; set; }
-
         public DateTime ReleaseDate { get; set; }
 
         [Required]

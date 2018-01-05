@@ -1,4 +1,5 @@
-﻿using ReviewYourFavourites.Data;
+﻿using Microsoft.AspNetCore.Http;
+using ReviewYourFavourites.Data;
 using System.ComponentModel.DataAnnotations;
 
 namespace ReviewYourFavourites.Web.Areas.Review.Models
@@ -18,8 +19,5 @@ namespace ReviewYourFavourites.Web.Areas.Review.Models
         [Range(DataConstants.ReviewRatingMinRange,
             DataConstants.ReviewRatingMaxRange)]
         public int Rating { get; set; }
-
-        [MaxLength(DataConstants.ReviewPosterFileLength)]
-        public byte[] Poster { get; set; }
     }
 }
