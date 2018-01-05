@@ -35,9 +35,24 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
+
+                @if (User.IsInRole(WebConstants.AdministratorRole))
+                {
+                    <div class="dropdown navbar-right customDropdown">
+                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                            Administration
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a asp-area="@WebConstants.AdminArea" asp-controller="Admin" asp-action="">TODO:</a></li>
+                            <li><a asp-area="@WebConstants.AdminArea" asp-controller="Admin" asp-action="">TODO:</a></li>
+                        </ul>
+                    </div>
+                }
             </div>
         </div>
     </nav>
+
     <div class="container body-content">
         @if (TempData.ContainsKey(WebConstants.TempDataSuccessMessageKey))
         {
@@ -55,6 +70,7 @@
 
         @RenderBody()
         <hr />
+
         <footer>
             <p>&copy; 2017 - ReviewYourFavourites.Web</p>
         </footer>

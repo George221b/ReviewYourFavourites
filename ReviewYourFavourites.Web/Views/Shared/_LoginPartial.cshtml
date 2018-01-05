@@ -24,3 +24,17 @@ else
         <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
     </ul>
 }
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="dropdown navbar-right customDropdown">
+        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+            Comics
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a asp-area="Review" asp-controller="Comics" asp-action="Create">Write Review</a></li>
+            <li><a asp-area="Review" asp-controller="Comics" asp-action="Index">All Comic Reviews</a></li>
+        </ul>
+    </div>
+}

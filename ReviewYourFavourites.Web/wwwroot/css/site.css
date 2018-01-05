@@ -42,3 +42,7 @@
     font-style:italic;
     font-size: 0.8em;
 }
+
+.customDropdown {
+    margin: 8px;
+}
