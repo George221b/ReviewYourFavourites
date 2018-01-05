@@ -1,5 +1,6 @@
 ﻿namespace ReviewYourFavourites.Data.Models
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     public abstract class Review
@@ -26,5 +27,7 @@
 
         [MaxLength(DataConstants.ReviewPosterFileLength)]
         public byte[] Poster { get; set; }
+
+        public DateTime PublishedOn { get; set; }
     }
 }

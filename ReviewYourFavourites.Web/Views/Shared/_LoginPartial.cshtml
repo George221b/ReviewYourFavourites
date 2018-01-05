@@ -37,4 +37,15 @@ else
             <li><a asp-area="Review" asp-controller="Comics" asp-action="Index">All Comic Reviews</a></li>
         </ul>
     </div>
+
+    <div class="dropdown navbar-right customDropdown">
+        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+            Movies
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a asp-area="Review" asp-controller="Movies" asp-action="Create">Write Review</a></li>
+            <li><a asp-area="Review" asp-controller="Movies" asp-action="Index">All Movie Reviews</a></li>
+        </ul>
+    </div>
 }

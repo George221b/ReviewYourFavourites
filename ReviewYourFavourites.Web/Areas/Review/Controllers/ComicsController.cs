@@ -1,16 +1,16 @@
 ﻿namespace ReviewYourFavourites.Web.Areas.Review.Controllers
 {
-    using Microsoft.AspNetCore.Mvc;
-    using ReviewYourFavourites.Web.Areas.Review.Models.Comics;
-    using System.Threading.Tasks;
-    using System;
     using Microsoft.AspNetCore.Http;
-    using ReviewYourFavourites.Data;
-    using ReviewYourFavourites.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using ReviewYourFavourites.Data;
     using ReviewYourFavourites.Data.Models;
-    using ReviewYourFavourites.Services.Review;
     using ReviewYourFavourites.Services.Html;
+    using ReviewYourFavourites.Services.Review;
+    using ReviewYourFavourites.Web.Areas.Review.Models.Comics;
+    using ReviewYourFavourites.Web.Infrastructure.Extensions;
+    using System;
+    using System.Threading.Tasks;
 
     public class ComicsController : BaseReviewController
     {
@@ -28,9 +28,11 @@
             this.htmlService = htmlService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var comics = await this.comicsService.All();
+
+            return View(comics);
         }
 
         public IActionResult Create()
