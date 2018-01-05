@@ -6,12 +6,18 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="HtmlSanitizer" Version="4.0.182" />
+    <PackageReference Include="iTextSharp.LGPLv2.Core" Version="1.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ReviewYourFavourites.Common\ReviewYourFavourites.Common.csproj" />
     <ProjectReference Include="..\ReviewYourFavourites.Data\ReviewYourFavourites.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Admin\" />
   </ItemGroup>
 
 </Project>

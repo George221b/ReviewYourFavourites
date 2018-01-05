@@ -9,5 +9,7 @@
 
         public const string AdminArea = "Admin";
         public const string ReviewArea = "Review";
+
+        public const string JpgExtension = ".jpg";
     }
 }

@@ -9,12 +9,13 @@ using ReviewYourFavourites.Data;
 using ReviewYourFavourites.Data.Models.Enums;
 using System;
 
-namespace ReviewYourFavourites.Web.Data.Migrations
+namespace ReviewYourFavourites.Data.Migrations
 {
     [DbContext(typeof(ReviewYourFavouritesDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180105134529_ComicContentLengthUpdated")]
+    partial class ComicContentLengthUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

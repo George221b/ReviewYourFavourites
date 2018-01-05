@@ -13,7 +13,7 @@
 
         [Required]
         [MinLength(DataConstants.ReviewContentMinLength)]
-        [MaxLength(DataConstants.ReviewTitleMaxLength)]
+        [MaxLength(DataConstants.ReviewContentMaxLength)]
         public string Content { get; set; }
 
         [Range(DataConstants.ReviewRatingMinRange,
