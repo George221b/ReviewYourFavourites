@@ -1,4 +1,4 @@
-﻿@model List<ListAllComicsServiceModel>
+﻿@model List<ListAllReviewsServiceModel>
 @{
     ViewData["Title"] = "Index";
 }
@@ -9,24 +9,7 @@
     <div class="card-deck">
         @foreach (var comic in this.Model)
         {
-        <div class="card col-md-4">
-            <div class="containerImage">
-                <a asp-area="@WebConstants.ReviewArea" asp-controller="Comics" asp-action="Details" asp-route-id="@comic.Id">
-                    <img class="img-fluid img-thumbnail card-img-top imageCustom" src="@comic.Poster.ToImgSrc()" alt="@comic.Title" width="235" height="180">
-                </a>
-                <div class="overlay">
-                    <div class="textImageCustom">Only For $@comic.Price</div>
-                </div>
-            </div>
-            <div class="card-block">
-                <h4 class="card-title">@comic.Title</h4>
-                <p class="card-text">@Html.Raw(comic.Content.SubstringWithThreeDots(200))</p>
-            </div>
-            <a class="btn btn-primary" asp-area="@WebConstants.ReviewArea" asp-controller="Comics" asp-action="Details" asp-route-id="@comic.Id">Read more!</a>
-            <div class="card-footer">
-                <small class="text-muted">Rated: @comic.Rating</small>
-            </div>
-        </div>
+            @Html.Partial("_ListReviewPartial", comic)
         }
     </div>
 </div>

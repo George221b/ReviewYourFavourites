@@ -19,11 +19,11 @@
             this.db = db;
         }
 
-        public async Task<List<ListAllComicsServiceModel>> All()
+        public async Task<List<ListAllReviewsServiceModel>> All()
             => await this.db
                  .Comics
                  .OrderByDescending(c => c.PublishedOn)
-                 .ProjectTo<ListAllComicsServiceModel>()
+                 .ProjectTo<ListAllReviewsServiceModel>()
                  .ToListAsync();
 
         public async Task CreateAsync(string userId,
@@ -50,6 +50,20 @@
 
             await db.Comics.AddAsync(comic);
             await db.SaveChangesAsync();
+        }
+
+        public async Task<DetailsComicServiceModel> GetById(int id)
+            => await this.db.Comics
+                    .ProjectTo<DetailsComicServiceModel>()
+                    .FirstOrDefaultAsync(c => c.Id.Equals(id));
+
+        public async Task GiveView(int id)
+        {
+            var comic = await this.db.Comics.FindAsync(id);
+            comic.Views++;
+
+            this.db.Comics.Update(comic);
+            await this.db.SaveChangesAsync();
         }
     }
 }

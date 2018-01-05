@@ -28,7 +28,7 @@
             this.htmlService = htmlService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index() //TODO: pagination
         {
             var comics = await this.comicsService.All();
 
@@ -81,6 +81,20 @@
             TempData.AddSuccessMessage(WebTextConstants.ReviewComicCreateSuccessMessage);
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var comic = await this.comicsService.GetById(id);
+
+            if (comic == null)
+            {
+                return NotFound();
+            }
+
+            await this.comicsService.GiveView(id);
+
+            return View(comic);
         }
     }
 }

@@ -1,0 +1,22 @@
+﻿@model ListAllReviewsServiceModel
+
+<div class="card col-md-4">
+    <div class="containerImage">
+
+        <img class="img-fluid img-thumbnail card-img-top imageCustom" src="@Model.Poster.ToImgSrc()" alt="@Model.Title" width="235" height="180">
+
+        <div class="overlay">
+            <a asp-area="@WebConstants.ReviewArea" asp-controller="Comics" asp-action="Details" asp-route-id="@Model.Id">
+                <div class="textImageCustom">Read more<br>Rated @Model.Rating/10</div>
+            </a>
+        </div>
+    </div>
+    <div class="card-block">
+        <h4 class="card-title">@Model.Title</h4>
+        <p class="card-text">@Html.Raw(Model.Content.SubstringWithThreeDots(200))</p>
+    </div>
+    <a class="btn btn-primary" asp-area="@WebConstants.ReviewArea" asp-controller="Comics" asp-action="Details" asp-route-id="@Model.Id">Read more!</a>
+    <div class="card-footer">
+        <small class="text-muted">Rated: @Model.Rating</small>
+    </div>
+</div>
