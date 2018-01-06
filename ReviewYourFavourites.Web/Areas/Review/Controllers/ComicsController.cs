@@ -33,7 +33,7 @@
             this.usersService = usersService;
         }
 
-        public async Task<IActionResult> Index() //TODO: pagination
+        public async Task<IActionResult> Index() //TODO: pagination <-New Old->
         {
             var comics = await this.comicsService.AllAsync();
 
@@ -176,6 +176,53 @@
                 comicModel.Writer);
 
             TempData.AddSuccessMessage(WebTextConstants.ReviewComicEditSuccessMessage);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        //TODO: Rework GET Edit&Delete. They share same logic.
+        public async Task<IActionResult> Delete(int id) 
+        {
+            var isAuthor = await this.usersService.IsComicAuthorAsync(this.userManager.GetUserId(User), id);
+
+            if (!isAuthor && !User.IsInRole(WebConstants.AdministratorRole))
+            {
+                return Unauthorized();
+            }
+
+            var comicInfo = await this.comicsService.GetByIdAsync(id);
+
+            ViewData["id"] = id;
+
+            return View(new ComicCreateEditDeleteViewModel()
+            {
+                Title = comicInfo.Title,
+                Content = comicInfo.Content,
+                ReleaseDate = comicInfo.ReleaseDate,
+                Price = comicInfo.Price,
+                Rating = comicInfo.Rating,
+                Writer = comicInfo.Writer
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Destroy(int id)
+        {
+            var userId = this.userManager.GetUserId(User);
+            var isAuthor = await this.usersService.IsComicAuthorAsync(userId, id);
+
+            if (!isAuthor && !User.IsInRole(WebConstants.AdministratorRole))
+            {
+                return Unauthorized();
+            }
+
+            var isDeleted = await this.comicsService.DeleteAsync(id);
+            if (!isDeleted)
+            {
+                return BadRequest();
+            }
+
+            TempData.AddSuccessMessage(WebTextConstants.ReviewComicDeleteSuccessMessage);
 
             return RedirectToAction(nameof(Index));
         }

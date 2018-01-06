@@ -8,7 +8,7 @@
 
         public int ReleaseYear { get; set; }
 
-        //TODO: Genres
+        //TODO: Genres Google-EnumFlags
 
         public string AuthorId { get; set; }
 

@@ -16,7 +16,6 @@
         public DateTime Birthday { get; set; }
 
         //// TODO
-        ////[Required]
         ////public byte[] ProfilePhoto { get; set; }
 
         public Gender Gender { get; set; }

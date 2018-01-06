@@ -89,5 +89,20 @@
             this.db.Comics.Update(comic);
             await db.SaveChangesAsync();
         }
+
+        public async Task<bool> DeleteAsync(int comicId)
+        {
+            var comic = this.db.Comics.Find(comicId);
+
+            if (comic == null)
+            {
+                return false;
+            }
+
+            this.db.Comics.Remove(comic);
+            await this.db.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

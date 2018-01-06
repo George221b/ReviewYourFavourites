@@ -30,5 +30,7 @@
             DateTime releaseDate,
             decimal price,
             string writer);
+
+        Task<bool> DeleteAsync(int comicId);
     }
 }
