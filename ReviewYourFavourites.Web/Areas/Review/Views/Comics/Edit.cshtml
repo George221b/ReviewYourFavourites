@@ -1,0 +1,68 @@
+﻿@model ComicCreateEditDeleteViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" enctype="multipart/form-data">
+
+            <h3>Edit your comic here: </h3>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="@Model.Title"></label>
+                <input asp-for="@Model.Title" class="form-control" value="@Model.Title"/>
+                <span asp-validation-for="@Model.Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.Content"></label>
+                <textarea asp-for="@Model.Content">@Model.Content</textarea>
+                <span asp-validation-for="@Model.Content" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.Rating"></label>
+                <input asp-for="@Model.Rating" class="form-control" value="@Model.Rating"/>
+                <span asp-validation-for="@Model.Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="name">Poster reupload:</label>
+                <p class="disclaimer">*Please note, that if you decide to upload a poster, it must be no bigger than 2MBs. and be of type .jpg!*</p>
+                <input type="file" name="poster" style="display: none" accept=".jpg" />
+                <button type="button" class="btn btn-default" onclick="document.getElementsByName('poster')[0].click()">Choose your file!</button>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.Writer"></label>
+                <input asp-for="@Model.Writer" class="form-control" value="@Model.Writer"/>
+                <span asp-validation-for="@Model.Writer" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.Price"></label>
+                <input asp-for="@Model.Price" class="form-control" value="@Model.Price"/>
+                <span asp-validation-for="@Model.Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.ReleaseDate"></label>
+                <input asp-for="@Model.ReleaseDate" class="form-control" value="@Model.ReleaseDate"/>
+                <span asp-validation-for="@Model.ReleaseDate" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-default">Edit review!</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    CKEDITOR.replace('Content');
+</script>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+

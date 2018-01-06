@@ -35,14 +35,14 @@
 
         public async Task<IActionResult> Index() //TODO: pagination
         {
-            var comics = await this.comicsService.All();
+            var comics = await this.comicsService.AllAsync();
 
             return View(comics);
         }
 
         public IActionResult Create()
         {
-            var model = new ComicCreateViewModel()
+            var model = new ComicCreateEditDeleteViewModel()
             {
                 ReleaseDate = DateTime.UtcNow,
                 Price = 3.99m
@@ -52,7 +52,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ComicCreateViewModel comicModel, IFormFile poster)
+        public async Task<IActionResult> Create(ComicCreateEditDeleteViewModel comicModel, IFormFile poster)
         {
             if (!ModelState.IsValid)
             {
@@ -94,7 +94,7 @@
 
         public async Task<IActionResult> Details(int id)
         {
-            var comicInfo = await this.comicsService.GetById(id);
+            var comicInfo = await this.comicsService.GetByIdAsync(id);
 
             var isUserAuthor =
                 await this.usersService
@@ -105,7 +105,7 @@
                 return NotFound();
             }
 
-            await this.comicsService.GiveView(id);
+            await this.comicsService.GiveViewAsync(id);
 
             if (User.IsInRole(WebConstants.AdministratorRole))
             {
@@ -119,17 +119,34 @@
             });
         }
 
-        public async Task<IActionResult> Edit(int comicId)
+        public async Task<IActionResult> Edit(int id)
         {
-            var isAuthor = await this.usersService.IsComicAuthorAsync(this.userManager.GetUserId(User), comicId);
-            if (!isAuthor)
+            var isAuthor = await this.usersService.IsComicAuthorAsync(this.userManager.GetUserId(User), id);
+
+            if (!isAuthor && !User.IsInRole(WebConstants.AdministratorRole))
             {
                 return Unauthorized();
             }
 
-            var comicInfo = this.comicsService;
+            var comicInfo = await this.comicsService.GetByIdAsync(id);
 
-            return View();
+            return View(new ComicCreateEditDeleteViewModel()
+            {
+                Title = comicInfo.Title,
+                Content = comicInfo.Content,
+                ReleaseDate = comicInfo.ReleaseDate,
+                Price = comicInfo.Price,
+                Rating = comicInfo.Rating,
+                Writer = comicInfo.Writer
+            });
+        }
+
+        [HttpPost]
+        public Task<IActionResult> Edit()
+        {
+
+            
+            return RedirectToAction(nameof(Index));
         }
     }
 }

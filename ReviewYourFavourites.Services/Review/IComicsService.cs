@@ -16,10 +16,10 @@
             decimal price,
             string writer);
 
-        Task<List<ListAllReviewsServiceModel>> All();
+        Task<List<ListAllReviewsServiceModel>> AllAsync();
 
-        Task<DetailsComicServiceModel> GetById(int id);
+        Task<DetailsComicServiceModel> GetByIdAsync(int id);
 
-        Task GiveView(int id);
+        Task GiveViewAsync(int id);
     }
 }

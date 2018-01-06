@@ -4,7 +4,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class ComicCreateViewModel : ReviewCreateViewModel
+    public class ComicCreateEditDeleteViewModel : ReviewCreateViewModel
     {
         public DateTime ReleaseDate { get; set; }
 
