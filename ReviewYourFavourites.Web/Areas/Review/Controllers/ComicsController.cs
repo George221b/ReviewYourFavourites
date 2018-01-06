@@ -59,19 +59,15 @@
                 return RedirectToAction(nameof(Create));
             }
 
-            byte[] fileContents = Image.FromFile(WebConstants.DefaultPosterPath).ToByteArray();
-
-
-            if (poster != null)
+            byte[] fileContents;
+            try
             {
-                if (!poster.FileName.EndsWith(WebConstants.JpgExtension)
-                    || poster.Length > DataConstants.ReviewPosterFileLength)
-                {
-                    TempData.AddErrorMessage(WebTextConstants.ReviewComicPosterErrorMessage);
-                    return RedirectToAction(nameof(Create));
-                }
-
-                fileContents = await poster.ToByteArrayAsync();
+                fileContents = await ConvertToByteArrayOrThrow(poster);
+            }
+            catch (Exception)
+            {
+                TempData.AddErrorMessage(WebTextConstants.ReviewComicPosterErrorMessage);
+                return RedirectToAction(nameof(Create));
             }
 
             var userId = this.userManager.GetUserId(User);
@@ -142,11 +138,64 @@
         }
 
         [HttpPost]
-        public Task<IActionResult> Edit()
+        public async Task<IActionResult> Edit(ComicCreateEditDeleteViewModel comicModel, IFormFile poster, int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Edit", "Comics", id);
+            }
 
-            
+            var userId = this.userManager.GetUserId(User);
+            var content = this.htmlService.Sanitize(comicModel.Content);
+            var isAuthor = await this.usersService.IsComicAuthorAsync(userId, id);
+
+            if (!isAuthor && !User.IsInRole(WebConstants.AdministratorRole))
+            {
+                return Unauthorized();
+            }
+
+            byte[] fileContents;
+            try
+            {
+                fileContents = await ConvertToByteArrayOrThrow(poster);
+            }
+            catch (ArgumentException)
+            {
+                TempData.AddErrorMessage(WebTextConstants.ReviewComicPosterErrorMessage);
+                return RedirectToAction("Edit", "Comics", id);
+            }
+
+            await this.comicsService
+                .UpdateAsync(id,
+                comicModel.Title,
+                content,
+                comicModel.Rating,
+                fileContents,
+                comicModel.ReleaseDate,
+                comicModel.Price,
+                comicModel.Writer);
+
+            TempData.AddSuccessMessage(WebTextConstants.ReviewComicEditSuccessMessage);
+
             return RedirectToAction(nameof(Index));
+        }
+
+        private async Task<byte[]> ConvertToByteArrayOrThrow(IFormFile poster)
+        {
+            byte[] fileContents = Image.FromFile(WebConstants.DefaultPosterPath).ToByteArray();
+
+            if (poster != null)
+            {
+                if (!poster.FileName.EndsWith(WebConstants.JpgExtension)
+                    || poster.Length > DataConstants.ReviewPosterFileLength)
+                {
+                    throw new ArgumentException();
+                }
+
+                return fileContents = await poster.ToByteArrayAsync();
+            }
+
+            return fileContents;
         }
     }
 }

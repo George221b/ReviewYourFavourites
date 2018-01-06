@@ -21,5 +21,14 @@
         Task<DetailsComicServiceModel> GetByIdAsync(int id);
 
         Task GiveViewAsync(int id);
+
+        Task UpdateAsync(int comicId,
+            string title,
+            string content,
+            int rating,
+            byte[] poster,
+            DateTime releaseDate,
+            decimal price,
+            string writer);
     }
 }

@@ -65,5 +65,29 @@
             this.db.Comics.Update(comic);
             await this.db.SaveChangesAsync();
         }
+
+        public async Task UpdateAsync(int comicId,
+            string title,
+            string content,
+            int rating,
+            byte[] poster,
+            DateTime releaseDate,
+            decimal price, 
+            string writer)
+        {
+            var comic = await this.db.Comics.FindAsync(comicId);
+
+            comic.Title = title;
+            comic.Content = content;
+            comic.Rating = rating;
+            comic.Poster = poster;
+            comic.ReleaseDate = releaseDate;
+            comic.Price = price;
+            comic.Writer = writer;
+            comic.PublishedOn = DateTime.UtcNow;
+
+            this.db.Comics.Update(comic);
+            await db.SaveChangesAsync();
+        }
     }
 }
