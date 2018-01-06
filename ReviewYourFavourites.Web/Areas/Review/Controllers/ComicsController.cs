@@ -5,11 +5,13 @@
     using Microsoft.AspNetCore.Mvc;
     using ReviewYourFavourites.Data;
     using ReviewYourFavourites.Data.Models;
+    using ReviewYourFavourites.Services;
     using ReviewYourFavourites.Services.Html;
     using ReviewYourFavourites.Services.Review;
     using ReviewYourFavourites.Web.Areas.Review.Models.Comics;
     using ReviewYourFavourites.Web.Infrastructure.Extensions;
     using System;
+    using System.Drawing;
     using System.Threading.Tasks;
 
     public class ComicsController : BaseReviewController
@@ -17,15 +19,18 @@
         private readonly UserManager<User> userManager;
         private readonly IComicsService comicsService;
         private readonly IHtmlService htmlService;
+        private readonly IUsersService usersService;
 
         public ComicsController(
             UserManager<User> userManager,
             IComicsService comicsService,
-            IHtmlService htmlService)
+            IHtmlService htmlService,
+            IUsersService usersService)
         {
             this.userManager = userManager;
             this.comicsService = comicsService;
             this.htmlService = htmlService;
+            this.usersService = usersService;
         }
 
         public async Task<IActionResult> Index() //TODO: pagination
@@ -54,6 +59,9 @@
                 return RedirectToAction(nameof(Create));
             }
 
+            byte[] fileContents = Image.FromFile(WebConstants.DefaultPosterPath).ToByteArray();
+
+
             if (poster != null)
             {
                 if (!poster.FileName.EndsWith(WebConstants.JpgExtension)
@@ -62,9 +70,10 @@
                     TempData.AddErrorMessage(WebTextConstants.ReviewComicPosterErrorMessage);
                     return RedirectToAction(nameof(Create));
                 }
+
+                fileContents = await poster.ToByteArrayAsync();
             }
 
-            var fileContents = await poster.ToByteArrayAsync();
             var userId = this.userManager.GetUserId(User);
             var content = this.htmlService.Sanitize(comicModel.Content);
 
@@ -85,16 +94,42 @@
 
         public async Task<IActionResult> Details(int id)
         {
-            var comic = await this.comicsService.GetById(id);
+            var comicInfo = await this.comicsService.GetById(id);
 
-            if (comic == null)
+            var isUserAuthor =
+                await this.usersService
+                .IsComicAuthorAsync(this.userManager.GetUserId(User), id);
+
+            if (comicInfo == null)
             {
                 return NotFound();
             }
 
             await this.comicsService.GiveView(id);
 
-            return View(comic);
+            if (User.IsInRole(WebConstants.AdministratorRole))
+            {
+                isUserAuthor = true;
+            }
+
+            return View(new ComicDetailsViewModel()
+            {
+                Comic = comicInfo,
+                IsAuthorOfReview = isUserAuthor
+            });
+        }
+
+        public async Task<IActionResult> Edit(int comicId)
+        {
+            var isAuthor = await this.usersService.IsComicAuthorAsync(this.userManager.GetUserId(User), comicId);
+            if (!isAuthor)
+            {
+                return Unauthorized();
+            }
+
+            var comicInfo = this.comicsService;
+
+            return View();
         }
     }
 }

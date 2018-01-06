@@ -11,5 +11,6 @@
         public const string ReviewArea = "Review";
 
         public const string JpgExtension = ".jpg";
+        public const string DefaultPosterPath = @"wwwroot\images\default.jpg";
     }
 }

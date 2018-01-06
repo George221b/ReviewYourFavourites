@@ -1,31 +1,38 @@
-﻿@model DetailsComicServiceModel
+﻿@model ComicDetailsViewModel
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1 class="text-center">@Model.Title</h1>
+<h1 class="text-center">@Model.Comic.Title</h1>
 
 <div class="container">
     <div class="row">
         <div class="col-md-2">
-            <img class="img-fluid img-thumbnail card-img-top imageCustom" src="@Model.Poster.ToImgSrc()" alt="@Model.Title">
+            <img class="img-fluid img-thumbnail card-img-top imageCustom" src="@Model.Comic.Poster.ToImgSrc()" alt="@Model.Comic.Title">
         </div>
         <div class="col-md-10 pull-left">
-            @Html.Raw(Model.Content)
+            @Html.Raw(Model.Comic.Content)
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 text-center">
             <h3>Comic Information:</h3>
-            Price: @Model.Price, Released On: @Model.ReleaseDate.ToShortDateString()
-            Author: @Model.Writer
+            Price: @Model.Comic.Price, Released On: @Model.Comic.ReleaseDate.ToShortDateString()
+            Author: @Model.Comic.Writer
         </div>
         <div class="col-md-6 text-center">
             <h3>Author of the review information:</h3>
-            Review written by: @Model.AuthorUsername, @Model.PublishedOn.ToShortDateString()
-            Rated: @Model.Rating
-            Views: @Model.Views
+            Review written by: @Model.Comic.AuthorUsername, @Model.Comic.PublishedOn.ToShortDateString()
+            Rated: @Model.Comic.Rating
+            Views: @Model.Comic.Views
         </div>
+    </div>
+    <div class="row text-center editDeleteButtons">
+        @if (Model.IsAuthorOfReview)
+        {
+            <a asp-area="@WebConstants.ReviewArea" asp-controller="Comics" asp-action="Edit" asp-route-id="@Model.Comic.Id" class="btn-lg btn-primary">Edit</a>
+            <a asp-area="@WebConstants.ReviewArea" asp-controller="Comics" asp-action="Delete" asp-route-id="@Model.Comic.Id" class="btn-lg btn-danger">Delete</a>
+        }
     </div>
 </div>
 
