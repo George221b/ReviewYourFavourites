@@ -6,9 +6,9 @@
     using Microsoft.Extensions.DependencyInjection;
     using ReviewYourFavourites.Data;
     using ReviewYourFavourites.Data.Models;
-    using ReviewYourFavourites.Data.Models.Enums;
     using System;
     using System.Threading.Tasks;
+    using ReviewYourFavourites.Data.Models.Enums;
 
     public static class ApplicationBuilderExtensions
     {
@@ -25,10 +25,12 @@
                     .Run(async () =>
                     {
                         var adminName = WebConstants.AdministratorRole;
+                        var proUserName = WebConstants.ProUserRole;
 
                         var roles = new[]
                         {
-                            adminName
+                            adminName,
+                            proUserName
                         };
 
                         foreach (var role in roles)
@@ -45,8 +47,10 @@
                         }
 
                         var adminEmail = "admin@admin.com";
+                        var proUserEmail = "pro@pro.com";
 
                         var adminUser = await userManager.FindByEmailAsync(adminEmail);
+                        var proUser = await userManager.FindByEmailAsync(proUserEmail);
 
                         if (adminUser == null)
                         {
@@ -55,13 +59,31 @@
                                 Email = adminEmail,
                                 UserName = adminName,
                                 Name = adminName,
-                                Birthday = DateTime.UtcNow
+                                Birthday = DateTime.UtcNow,
+                                Gender = Gender.Female                        
                             };
 
                             await userManager.CreateAsync(adminUser, "Admin2017");
 
                             await userManager.AddToRoleAsync(adminUser, adminName);
                         }
+
+                        if (proUser == null)
+                        {
+                            proUser = new User
+                            {
+                                Email = proUserEmail,
+                                UserName = proUserName,
+                                Name = proUserName,
+                                Birthday = DateTime.UtcNow,
+                                Gender = Gender.Female
+                            };
+
+                            await userManager.CreateAsync(proUser, "ProUser2017");
+
+                            await userManager.AddToRoleAsync(adminUser, proUserName);
+                        }
+
                     })
                     .Wait();
             }

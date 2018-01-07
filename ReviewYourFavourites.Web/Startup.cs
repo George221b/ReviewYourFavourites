@@ -52,7 +52,7 @@
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, Seeder seeder)
         {
-            //app.UseDatabaseMigration();
+            app.UseDatabaseMigration();
 
             if (env.IsDevelopment())
             {
@@ -80,7 +80,7 @@
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            //seeder.Seed().Wait();
+            seeder.Seed().Wait();
         }
     }
 }
