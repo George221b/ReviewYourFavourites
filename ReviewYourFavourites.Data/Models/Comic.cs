@@ -1,7 +1,7 @@
 ﻿namespace ReviewYourFavourites.Data.Models
 {
+    using ReviewYourFavourites.Data.Attributes;
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     public class Comic : Review
@@ -11,6 +11,7 @@
         [Required]
         [MinLength(DataConstants.ComicWriterMinLength)]
         [MaxLength(DataConstants.ComicWriterMaxLength)]
+        [Name]
         public string Writer { get; set; }
 
         [Range(DataConstants.ComicPriceMinRange,
@@ -20,7 +21,5 @@
         public string AuthorId { get; set; }
 
         public User Author { get; set; }
-
-        //public List<UserComicLikes> UserComicLikes = new List<UserComicLikes>();
     }
 }

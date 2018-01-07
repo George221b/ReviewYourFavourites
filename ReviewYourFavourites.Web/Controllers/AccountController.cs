@@ -6,6 +6,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ReviewYourFavourites.Data.Models;
+    using ReviewYourFavourites.Web.Infrastructure.Extensions;
     using ReviewYourFavourites.Web.Models.AccountViewModels;
     using System;
     using System.Security.Claims;
@@ -215,7 +216,7 @@
                 var user = new User {
                     UserName = model.UserName,
                     Email = model.Email,
-                    Name = model.Name,
+                    Name = model.Name.FormatName(),
                     Gender = model.Gender,
                     Birthday = model.Birthday
                 };

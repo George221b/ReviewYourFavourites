@@ -26,6 +26,15 @@
         public const int ReviewViewsMinRange = 0;
         public const int ReviewViewsMaxRange = int.MaxValue;
 
+        public const int BookPagesMinRange = 0;
+        public const int BookPagesMaxRange = 100000;
+
+        public const int BookPublishedYearMinRange = 0;
+        public const int BookPublishedYearMaxRange = 2100;
+
+        public const int MovieReleasedYearMinRange = 1800;
+        public const int MovieReleasedYearMaxRange = 2100;
+
         public const int ReviewPosterFileLength = 2 * 1024 * 1024;
     }
 }

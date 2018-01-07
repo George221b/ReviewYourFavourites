@@ -81,7 +81,7 @@
                 fileContents,
                 comicModel.ReleaseDate,
                 comicModel.Price,
-                comicModel.Writer);
+                comicModel.Writer.FormatName());
 
             TempData.AddSuccessMessage(WebTextConstants.ReviewComicCreateSuccessMessage);
 

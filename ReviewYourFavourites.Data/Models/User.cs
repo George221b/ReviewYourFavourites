@@ -1,6 +1,7 @@
 ﻿namespace ReviewYourFavourites.Data.Models
 {
     using Microsoft.AspNetCore.Identity;
+    using ReviewYourFavourites.Data.Attributes;
     using ReviewYourFavourites.Data.Models.Enums;
     using System;
     using System.Collections.Generic;
@@ -9,6 +10,7 @@
     public class User : IdentityUser
     {        
         [Required]
+        [Name]
         [MinLength(DataConstants.UserNameMinLength)]
         [MaxLength(DataConstants.UserNameMaxLength)]
         public string Name { get; set; }
@@ -24,8 +26,6 @@
 
         public List<Movie> Movies { get; set; } = new List<Movie>();
 
-        //public List<UserComicLikes> ComicLiked = new List<UserComicLikes>();
-
-        //public List<UserMovieLikes> MovieLiked = new List<UserMovieLikes>();
+        public List<Book> Books { get; set; } = new List<Book>();
     }
 }
