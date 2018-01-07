@@ -34,6 +34,7 @@
             if (this.db.Users.Count() <= 3)
             {
                 var normal = this.db.Users.FirstOrDefault(u => u.UserName == "Normal");
+                var avatar = File.ReadAllBytes("../ReviewYourFavourites.Web/wwwroot/images/avatar.jpg");
 
                 if (normal == null)
                 {
@@ -43,7 +44,8 @@
                         UserName = "Normal",
                         Name = "Normal Name",
                         Birthday = DateTime.UtcNow,
-                        Gender = Gender.Female
+                        Gender = Gender.Female,
+                        Avatar = avatar
                     };
 
                     await userManager.CreateAsync(normal, "Normal2017");

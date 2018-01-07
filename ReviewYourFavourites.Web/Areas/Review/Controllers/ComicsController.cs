@@ -45,7 +45,8 @@
             var model = new ComicCreateEditDeleteViewModel()
             {
                 ReleaseDate = DateTime.UtcNow,
-                Price = 3.99m
+                Price = 3.99m,
+                Rating = 10
             };
 
             return View(model);

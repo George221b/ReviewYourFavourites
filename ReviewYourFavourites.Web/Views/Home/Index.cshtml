@@ -12,5 +12,34 @@
     else
     {
         <h2>Welcome back, <span class="indexUsername">@User.Identity.Name</span></h2>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4>Go write a comic review here:</h4>
+                        <a class="btn btn-default" asp-area="@WebConstants.ReviewArea" asp-controller="Comics" asp-action="Create">Comic Review!</a>
+                    </div>
+                    <hr />
+                    @*<div class="col-md-12 text-center">
+                        <h4>Go write a movie review here:</h4>
+                        <a class="btn btn-default" asp-area="@WebConstants.ReviewArea" asp-controller="Movies" asp-action="Create">Movie Review!</a>
+                    </div>
+                    <hr />
+                    <div class="col-md-12 text-center">
+                        <h4>Go write a book review here:</h4>
+                        <a class="btn btn-default" asp-area="@WebConstants.ReviewArea" asp-controller="Books" asp-action="Create">Book Review!</a>
+                    </div>*@
+                </div>                
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4>See all comic reviews</h4>
+                        <a class="btn btn-default" asp-area="@WebConstants.ReviewArea" asp-controller="Comics" asp-action="Index">See All</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
 </div>

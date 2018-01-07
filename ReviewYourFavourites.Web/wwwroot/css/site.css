@@ -149,3 +149,20 @@
 .comicMenu {
     color: firebrick;
 }
+
+.usernameCustom {
+    color: firebrick;
+}
+
+.fontCustom {
+    font-family: 'Maiandra GD';
+}
+
+.bigText {
+    font-size: 1.2em;
+}
+
+.proUserProfileBadge {
+    position: absolute;
+    width: 50px;
+}

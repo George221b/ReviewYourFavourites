@@ -17,8 +17,8 @@
 
         public DateTime Birthday { get; set; }
 
-        //// TODO
-        ////public byte[] ProfilePhoto { get; set; }
+        [MaxLength(DataConstants.UserAvatarFileLength)]
+        public byte[] Avatar { get; set; }
 
         public Gender Gender { get; set; }
 

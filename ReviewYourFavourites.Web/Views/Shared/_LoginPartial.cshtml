@@ -13,7 +13,7 @@
                     Hello @UserManager.GetUserName(User)
                     @if (User.IsInRole(WebConstants.ProUserRole))
                     {
-                        <img src="~/images/proUser.jpg" alt="PRO" width="25px"/>
+                        <img src="~/images/proUser.jpg" alt="PRO" width="25px" />
                     }!
                 </a>
             </li>
@@ -33,6 +33,12 @@ else
 
 @if (SignInManager.IsSignedIn(User))
 {
+    <ul class="nav navbar-nav">
+        
+        <li><a asp-area="" asp-controller="Users" asp-action="MyProfile" asp-route-id="@UserManager.GetUserId(User)" class="pull-left">Profile</a></li>
+
+    </ul>
+
     <div class="dropdown navbar-right customDropdown">
         <button class="btn dropdown-toggle comicMenu" type="button" data-toggle="dropdown">
             Comics
@@ -65,4 +71,6 @@ else
             <li><a asp-area="Review" asp-controller="Books" asp-action="Index">All Movie Reviews TODO</a></li>
         </ul>
     </div>
+
+
 }

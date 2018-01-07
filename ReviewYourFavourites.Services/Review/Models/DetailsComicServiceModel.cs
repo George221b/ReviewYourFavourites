@@ -1,10 +1,10 @@
-﻿using AutoMapper;
-using ReviewYourFavourites.Common.Mapping;
-using ReviewYourFavourites.Data.Models;
-using System;
-
-namespace ReviewYourFavourites.Services.Review.Models
+﻿namespace ReviewYourFavourites.Services.Review.Models
 {
+    using AutoMapper;
+    using ReviewYourFavourites.Common.Mapping;
+    using ReviewYourFavourites.Data.Models;
+    using System;
+
     public class DetailsComicServiceModel : IMapFrom<Comic>, IHaveCustomMapping
     {
         public int Id { get; set; }

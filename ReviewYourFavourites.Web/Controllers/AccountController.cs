@@ -96,13 +96,15 @@
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
+                var avatar = System.IO.File.ReadAllBytes(WebConstants.DefaultAvatarPath);
                 var user = new User
                 {
                     UserName = model.UserName,
                     Email = model.Email,
                     Name = model.Name.FormatName(),
                     Gender = model.Gender,
-                    Birthday = model.Birthday
+                    Birthday = model.Birthday,
+                    Avatar = avatar
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

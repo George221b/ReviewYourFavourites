@@ -9,6 +9,7 @@
     using System;
     using System.Threading.Tasks;
     using ReviewYourFavourites.Data.Models.Enums;
+    using System.IO;
 
     public static class ApplicationBuilderExtensions
     {
@@ -52,6 +53,8 @@
                         var adminUser = await userManager.FindByEmailAsync(adminEmail);
                         var proUser = await userManager.FindByEmailAsync(proUserEmail);
 
+                        var avatar = File.ReadAllBytes(WebConstants.DefaultAvatarPath);
+
                         if (adminUser == null)
                         {
                             adminUser = new User
@@ -60,7 +63,8 @@
                                 UserName = adminName,
                                 Name = adminName,
                                 Birthday = DateTime.UtcNow,
-                                Gender = Gender.Female                        
+                                Gender = Gender.Female,                      
+                                Avatar = avatar
                             };
 
                             await userManager.CreateAsync(adminUser, "Admin2017");
@@ -76,7 +80,8 @@
                                 UserName = proUserName,
                                 Name = proUserName,
                                 Birthday = DateTime.UtcNow,
-                                Gender = Gender.Female
+                                Gender = Gender.Female,
+                                Avatar = avatar
                             };
 
                             await userManager.CreateAsync(proUser, "ProUser2017");

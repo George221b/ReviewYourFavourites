@@ -36,5 +36,6 @@
         public const int MovieReleasedYearMaxRange = 2100;
 
         public const int ReviewPosterFileLength = 2 * 1024 * 1024;
+        public const int UserAvatarFileLength = 2 * 1024 * 1024;
     }
 }
