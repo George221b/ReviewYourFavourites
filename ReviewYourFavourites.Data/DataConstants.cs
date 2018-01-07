@@ -37,5 +37,8 @@
 
         public const int ReviewPosterFileLength = 2 * 1024 * 1024;
         public const int UserAvatarFileLength = 2 * 1024 * 1024;
+
+        public const string AdministratorRole = "Administrator";
+        public const string ProUserRole = "ProUser";
     }
 }

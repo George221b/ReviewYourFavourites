@@ -22,7 +22,7 @@
             <div class="col-md-12">
                 @if (User.IsInRole(WebConstants.ProUserRole))
                 {
-                    <img src="~/images/proUser.jpg" class="proUserProfileBadge"/>
+                    <img src="~/images/proUser.jpg" class="proUserProfileBadge" />
                 }
                 <img src="@Model.UserInfo.Avatar.ToImgSrc()" class="img-circle img-responsive" />
             </div>
@@ -37,6 +37,12 @@
                         <button type="submit" class="btn btn-info btn-default">Change Avatar!</button>
                     </form>
                 </div>
+            </div>
+            <div class="col-md-12">
+                If you want to change your password, simply go to
+                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">
+                    Manage Account.
+                </a>
             </div>
         </div>
     </div>
@@ -61,14 +67,14 @@
                 @if (!User.IsInRole(WebConstants.ProUserRole))
                 {
                     <div class="bigText">
-                        Collect more than 2500 views to become <span class="usernameCustom">ProUser!</span> ProUsers have a special badge in the menu. Once you collect that many view, you will automatically become one!
+                        Collect more than @WebConstants.ViewsNeededForProUserRole views to become <span class="usernameCustom">ProUser!</span> ProUsers have a special badge in the menu. Once you collect that many view, you will automatically become one!
                     </div>
                 }
                 else
                 {
                     <div class="bigText">
                         Thank you for being so active here! Your fans need you. This is your first badge of honour. More coming soon.
-                        <img src="~/images/proUser.jpg" />
+                        <img src="~/images/proUser.jpg" width="60px" />
                     </div>
                 }
             </div>

@@ -1,8 +1,10 @@
 ﻿namespace ReviewYourFavourites.Services.Implementations
 {
     using AutoMapper.QueryableExtensions;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using ReviewYourFavourites.Data;
+    using ReviewYourFavourites.Data.Models;
     using ReviewYourFavourites.Services.Models;
     using System.Linq;
     using System.Threading.Tasks;
@@ -10,10 +12,13 @@
     public class UsersService : IUsersService
     {
         private readonly ReviewYourFavouritesDbContext db;
+        private readonly UserManager<User> userManager;
 
-        public UsersService(ReviewYourFavouritesDbContext db)
+        public UsersService(ReviewYourFavouritesDbContext db,
+            UserManager<User> userManager)
         {
             this.db = db;
+            this.userManager = userManager;
         }
 
         public async Task<UserProfileServiceModel> GetInfoAsync(string id)
@@ -75,6 +80,16 @@
                    .Load();
 
             return user.Books.Sum(c => c.Views);
+        }
+
+        public async Task AddToProUserRole(string id)
+        {
+            var user = await this.db.Users.FindAsync(id);
+
+            await this.userManager
+                .AddToRoleAsync(user, DataConstants.ProUserRole);
+
+            await db.SaveChangesAsync();
         }
     }
 }

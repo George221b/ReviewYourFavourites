@@ -1,6 +1,7 @@
 ﻿namespace ReviewYourFavourites.Web.Controllers
 {
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using ReviewYourFavourites.Data.Models;
@@ -35,6 +36,11 @@
             var movieViews = await this.usersService.GetMoviesViewsAsync(id);
             var bookViews = await this.usersService.GetBooksViewsAsync(id);
 
+            if (comicViews + movieViews + bookViews >= WebConstants.ViewsNeededForProUserRole)
+            {
+                await this.usersService.AddToProUserRole(id);
+            }
+
             return View(new UserProfileViewModel()
             {
                 UserInfo = userDetails,
@@ -42,6 +48,15 @@
                 MovieViewsTotal = movieViews,
                 BookViewsTotal = bookViews
             });
+        }
+
+        //POST???
+        public async Task<IActionResult> ChangeAvatar(IFormFile avatar)
+        {
+
+            return RedirectToAction("MyProfile",
+                "Users",
+                new { id = this.userManager.GetUserId(User) });
         }
     }
 }

@@ -14,5 +14,7 @@
         public const string JpgExtension = ".jpg";
         public const string DefaultPosterPath = @"wwwroot\images\default.jpg";
         public const string DefaultAvatarPath = @"C:\Users\Georgi\Documents\ReviewYourFavourites\ReviewYourFavourites.Web\wwwroot\images\avatar.jpg";
+
+        public const int ViewsNeededForProUserRole = 2500;
     }
 }

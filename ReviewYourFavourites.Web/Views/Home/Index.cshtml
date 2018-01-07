@@ -4,7 +4,7 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-<div class="container-fluid">
+<div class="container-fluid fontCustom">
     @if (!this.SignInManager.IsSignedIn(User))
     {
         @Html.Partial("_IndexUnsignedUserPartial")
@@ -36,8 +36,14 @@
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <h4>See all comic reviews</h4>
-                        <a class="btn btn-default" asp-area="@WebConstants.ReviewArea" asp-controller="Comics" asp-action="Index">See All</a>
+                        <a class="btn btn-primary" asp-area="@WebConstants.ReviewArea" asp-controller="Comics" asp-action="Index">See All</a>
                     </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 text-center">
+                    <h4>Go to your profile here</h4>
+                    <a class="btn btn-default" asp-area="" asp-controller="Users" asp-action="MyProfile" asp-route-id="@UserManager.GetUserId(User)">My Profile</a>
                 </div>
             </div>
         </div>

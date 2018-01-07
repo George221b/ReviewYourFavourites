@@ -14,5 +14,7 @@
         Task<int> GetMoviesViewsAsync(string id);
 
         Task<int> GetBooksViewsAsync(string id);
+
+        Task AddToProUserRole(string id);
     }
 }

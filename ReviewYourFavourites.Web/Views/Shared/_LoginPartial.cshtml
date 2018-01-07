@@ -9,7 +9,7 @@
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">
+                <a asp-area="" asp-controller="Users" asp-action="MyProfile" asp-route-id="@UserManager.GetUserId(User)" title="Manage">
                     Hello @UserManager.GetUserName(User)
                     @if (User.IsInRole(WebConstants.ProUserRole))
                     {
@@ -33,12 +33,6 @@ else
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <ul class="nav navbar-nav">
-        
-        <li><a asp-area="" asp-controller="Users" asp-action="MyProfile" asp-route-id="@UserManager.GetUserId(User)" class="pull-left">Profile</a></li>
-
-    </ul>
-
     <div class="dropdown navbar-right customDropdown">
         <button class="btn dropdown-toggle comicMenu" type="button" data-toggle="dropdown">
             Comics
