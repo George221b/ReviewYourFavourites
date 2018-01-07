@@ -1,8 +1,10 @@
 ﻿namespace ReviewYourFavourites.Data
 {
+    using Microsoft.AspNetCore.Identity;
     using ReviewYourFavourites.Data.Models;
     using ReviewYourFavourites.Data.Models.Enums;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -13,10 +15,13 @@
         public const string ProUserUsername = "ProUser";
 
         private readonly ReviewYourFavouritesDbContext db;
+        private readonly UserManager<User> userManager;
 
-        public Seeder(ReviewYourFavouritesDbContext db)
+        public Seeder(ReviewYourFavouritesDbContext db,
+            UserManager<User> userManager)
         {
             this.db = db;
+            this.userManager = userManager;
         }
         // SEEDING TEST DATA
         public async Task Seed()
@@ -41,7 +46,8 @@
                         Gender = Gender.Female
                     };
 
-                    await this.db.Users.AddAsync(normal);
+                    await userManager.CreateAsync(normal, "Normal2017");
+
                     await this.db.SaveChangesAsync();
                 }
             }
@@ -50,10 +56,10 @@
             if (!this.db.Comics.Any())
             {
                 var image1 = File.ReadAllBytes("../ReviewYourFavourites.Web/wwwroot/images/1.jpg");
-                var image2 = File.ReadAllBytes("../ReviewYourFavourites.Web/wwwroot/images/1.jpg");
-                var image3 = File.ReadAllBytes("../ReviewYourFavourites.Web/wwwroot/images/1.jpg");
-                var image4 = File.ReadAllBytes("../ReviewYourFavourites.Web/wwwroot/images/1.jpg");
-                var image5 = File.ReadAllBytes("../ReviewYourFavourites.Web/wwwroot/images/1.jpg");
+                var image2 = File.ReadAllBytes("../ReviewYourFavourites.Web/wwwroot/images/2.jpg");
+                var image3 = File.ReadAllBytes("../ReviewYourFavourites.Web/wwwroot/images/3.jpg");
+                var image4 = File.ReadAllBytes("../ReviewYourFavourites.Web/wwwroot/images/4.jpg");
+                var image5 = File.ReadAllBytes("../ReviewYourFavourites.Web/wwwroot/images/5.jpg");
 
                 var comic1 = new Comic()
                 {
@@ -119,6 +125,10 @@
                     Rating = 9,
                     Poster = image5
                 };
+
+                this.db.Comics.AddRange(new List<Comic> { comic1, comic2, comic3, comic4, comic5 });
+
+                await this.db.SaveChangesAsync();
             }
 
             if (!this.db.Movies.Any())

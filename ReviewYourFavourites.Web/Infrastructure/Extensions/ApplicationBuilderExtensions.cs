@@ -81,7 +81,7 @@
 
                             await userManager.CreateAsync(proUser, "ProUser2017");
 
-                            await userManager.AddToRoleAsync(adminUser, proUserName);
+                            await userManager.AddToRoleAsync(proUser, proUserName);
                         }
 
                     })

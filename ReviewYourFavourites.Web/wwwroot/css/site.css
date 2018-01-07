@@ -97,3 +97,55 @@
 .editDeleteButtons {
     margin: 15px;
 }
+
+.indexGuestText {
+    border: 2px dotted;
+    border-color: firebrick;
+    border-radius: 32%;
+    background-color: linen;
+}
+
+.jumbotron {
+    background-color: white;
+}
+
+.indexUsername {
+    color: firebrick;
+    font-size: 1.1em;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.navbarCustom {
+    background-color: #F5DEB3;
+    border-color: #F5DEB3;
+    color: black;
+    margin: 7px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 50px;
+}
+
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .btn-link {
+    color: #000080;
+    text-shadow: 1px 0px 0px #000080;
+}
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .btn-link:hover  {
+    border-bottom: 2px double;
+    color: firebrick;
+    border-radius: 40%;
+}
+
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    font-family: 'Berlin Sans FB';
+    color: firebrick;
+}
+
+.adminNavbar, .comicMenu, .bookReview, .movieReview {
+    color: #000080;
+    background-color: #F5DEB3;
+    text-shadow: 1px 0px 0px #000080;
+}
+.comicMenu {
+    color: firebrick;
+}
