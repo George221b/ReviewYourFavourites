@@ -65,7 +65,7 @@
             {
                 fileContents = await ConvertToByteArrayOrThrow(poster);
             }
-            catch (Exception)
+            catch (ArgumentException)
             {
                 TempData.AddErrorMessage(WebTextConstants.ReviewComicPosterErrorMessage);
                 return RedirectToAction(nameof(Create));
