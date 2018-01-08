@@ -76,6 +76,6 @@ for the C# MVC Frameworks Course @ SoftUni
 <ul>
 	<li><strong>Normal</strong>, pass: Normal2017</li>
 	<li><strong>ProUser</strong>, pass: ProUser2017</li>
-	<li><strong>Administrator</strong>, pass: Administrator2017</li>
+	<li><strong>Administrator</strong>, pass: Admin2017</li>
 	<li>There are already comic reviews seeded.</li>
 </ul>
