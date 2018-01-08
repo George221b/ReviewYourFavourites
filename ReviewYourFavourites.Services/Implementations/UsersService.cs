@@ -91,5 +91,15 @@
 
             await db.SaveChangesAsync();
         }
+
+        public async Task ChangeAvatarAsync(byte[] avatar, string userId)
+        {
+            var user = await this.db.Users.FindAsync(userId);
+
+            user.Avatar = avatar;
+
+            this.db.Users.Update(user);
+            await this.db.SaveChangesAsync();
+        }
     }
 }

@@ -34,6 +34,8 @@
                         <input type="file" name="avatar" style="display: none" accept=".jpg" />
                         <button type="button" class="btn btn-default" onclick="document.getElementsByName('avatar')[0].click()">Choose your file!</button>
 
+                        <input  name="id" asp-for="@Model.UserInfo.Id" type="hidden"/>
+
                         <button type="submit" class="btn btn-info btn-default">Change Avatar!</button>
                     </form>
                 </div>

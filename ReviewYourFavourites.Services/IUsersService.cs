@@ -16,5 +16,7 @@
         Task<int> GetBooksViewsAsync(string id);
 
         Task AddToProUserRole(string id);
+
+        Task ChangeAvatarAsync(byte[] avatar, string userId);
     }
 }
