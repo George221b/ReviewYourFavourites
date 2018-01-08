@@ -70,3 +70,10 @@ for the C# MVC Frameworks Course @ SoftUni
 </li>
 </ul>
 <p>&nbsp;</p>
+<h2>Seeded data - Test yourself</h2>
+<ul>
+	<li><strong>Normal</strong>, pass: Normal2017</li>
+	<li><strong>ProUser</strong>, pass: ProUser2017</li>
+	<li><strong>Administrator</strong>, pass: Administrator2017</li>
+	<li>There are already comic reviews seeded.</li>
+</ul>
