@@ -1,6 +1,8 @@
 # ReviewYourFavourites Project Assignment 
 for the C# MVC Frameworks Course @ SoftUni
 
+[![Build status](https://ci.appveyor.com/api/projects/status/otu3453m1240sr6g?svg=true)](https://ci.appveyor.com/project/George221b/reviewyourfavourites)
+
 <h2>General Requirements</h2>
 <ul>
 <li>The application is implemented using <strong>NET Core</strong> framework.</li>
